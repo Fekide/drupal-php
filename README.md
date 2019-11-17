@@ -1,13 +1,13 @@
 # PHP (FPM) for Drupal Docker Container Image 
 
-[![Build Status](https://travis-ci.org/wodby/drupal-php.svg?branch=master)](https://travis-ci.org/wodby/drupal-php)
-[![Docker Pulls](https://img.shields.io/docker/pulls/wodby/drupal-php.svg)](https://hub.docker.com/r/wodby/drupal-php)
-[![Docker Stars](https://img.shields.io/docker/stars/wodby/drupal-php.svg)](https://hub.docker.com/r/wodby/drupal-php)
-[![Docker Layers](https://images.microbadger.com/badges/image/wodby/drupal-php.svg)](https://microbadger.com/images/wodby/drupal-php)
+[![Build Status](https://travis-ci.org/fekide/drupal-php.svg?branch=master)](https://travis-ci.org/Fekide/drupal-php)
+[![Docker Pulls](https://img.shields.io/docker/pulls/fekide/drupal-php.svg)](https://hub.docker.com/r/fekide/drupal-php)
+[![Docker Stars](https://img.shields.io/docker/stars/fekide/drupal-php.svg)](https://hub.docker.com/r/fekide/drupal-php)
+[![Docker Layers](https://images.microbadger.com/badges/image/wodby/drupal-php.svg)](https://microbadger.com/images/fekide/drupal-php)
 
 ## Docker Images
 
-❗For better reliability we release images with stability tags (`wodby/drupal-php:7.3-X.X.X`) which correspond to [git tags](https://github.com/wodby/drupal-php/releases). We strongly recommend using images only with stability tags. 
+❗For better reliability we release images with stability tags (`wodby/drupal-php:7.3-X.X.X`) which correspond to [git tags](https://github.com/fekide/drupal-php/releases). We strongly recommend using images only with stability tags. 
 
 Overview:
 
