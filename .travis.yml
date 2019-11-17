@@ -4,6 +4,8 @@ services:
   - docker
 
 env:
+  global:
+  - BASE_IMAGE_STABILITY_TAG=4.12.12
   matrix:
   - PHP_VER=7.3 TAGS=7.3,7,latest
   - PHP_VER=7.2 TAGS=7.2
@@ -28,6 +30,6 @@ after_success:
 notifications:
   email:
     recipients:
-    - travisci@wodby.com
+    - it@feki.de
     on_success: never
     on_failure: always
