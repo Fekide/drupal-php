@@ -30,6 +30,6 @@ after_success:
 notifications:
   email:
     recipients:
-    - it@fekid.de
+    - it@feki.de
     on_success: never
     on_failure: always
