@@ -13,8 +13,8 @@ Overview:
 
 * All images are based on Alpine Linux
 * Base image: [wodby/php](https://github.com/wodby/php)
-* [Travis CI builds](https://travis-ci.org/wodby/drupal-php) 
-* [Docker Hub](https://hub.docker.com/r/wodby/drupal-php)
+* [Travis CI builds](https://travis-ci.org/Fekide/drupal-php) 
+* [Docker Hub](https://hub.docker.com/r/fekide/drupal-php)
 
 Supported tags and respective `Dockerfile` links:
 

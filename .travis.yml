@@ -30,6 +30,6 @@ after_success:
 notifications:
   email:
     recipients:
-    - travisci@wodby.com
+    - it@fekid.de
     on_success: never
     on_failure: always
