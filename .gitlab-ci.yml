@@ -15,7 +15,6 @@ stages:
     IMAGE_HOME: $CI_REGISTRY_IMAGE
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay
-    BASE_IMAGE_STABILITY_TAG: '4.12.12'
     PHP_VER: '7.4'
   before_script:
     - docker -l debug version
