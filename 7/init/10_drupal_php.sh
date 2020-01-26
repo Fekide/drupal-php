@@ -25,7 +25,6 @@ file_env() {
 }
 
 file_env "DB_PASSWORD"
-echo $DB_PASSWORD
 
 if [[ -n "${DRUPAL_VERSION}" ]]; then
     if [[ "${DRUPAL_VERSION}" == 7 ]] || [[ "${DRUPAL_VERSION}" == 8 ]]; then
