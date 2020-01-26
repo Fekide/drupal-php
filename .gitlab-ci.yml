@@ -27,6 +27,7 @@ stages:
     - make release
 
 build dev:
+  stage: build
   extends: .build-template
   variables:
     IMAGE_HOME: $CI_REGISTRY_IMAGE
@@ -36,6 +37,7 @@ build dev:
     - tags
 
 build master:
+  stage: build
   extends: .build-template
   variables:
     IMAGE_HOME: $CI_REGISTRY_IMAGE
@@ -44,6 +46,7 @@ build master:
     - master
 
 build tags:
+  stage: build
   extends: .build-template
   variables:
     IMAGE_HOME: $CI_REGISTRY_IMAGE
