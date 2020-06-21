@@ -1,6 +1,6 @@
 -include env_make
 
-PHP_VER ?= 7.3
+PHP_VER ?= 7.4
 
 BASE_IMAGE_TAG = $(PHP_VER)
 REPO = fekide/drupal-php
@@ -42,6 +42,11 @@ build:
 	docker build -t $(REPO):$(TAG) --build-arg BASE_IMAGE_TAG=$(BASE_IMAGE_TAG) ./
 
 test:
+ifneq ($(PHP_VER),7.2)
+	cd ./tests/9 && IMAGE=$(REPO):$(TAG) ./run.sh
+else
+	@echo "Skipping Drupal 9 tests for PHP 7.2"
+endif
 	cd ./tests/8 && IMAGE=$(REPO):$(TAG) ./run.sh
 	cd ./tests/7 && IMAGE=$(REPO):$(TAG) ./run.sh
 

@@ -5,23 +5,23 @@
 set -e
 
 if [[ -n "${DEBUG}" ]]; then
-    set -x
+  set -x
 fi
 
 check_rq() {
-    echo "Checking requirement: ${1} must be ${2}"
-    drush rq --format=json | jq '.[] | select(.title=="'"${1}"'") | .value' | grep -q "${2}"
-    echo "OK"
+  echo "Checking requirement: ${1} must be ${2}"
+  drush rq --format=json | jq '.[] | select(.title=="'"${1}"'") | .value' | grep -q "${2}"
+  echo "OK"
 }
 
 check_status() {
-    echo "Checking status: ${1} must be ${2}"
-    drush status --format=yaml | grep -q "${1}: ${2}"
-    echo "OK"
+  echo "Checking status: ${1} must be ${2}"
+  drush status --format=yaml | grep -q "${1}: ${2}"
+  echo "OK"
 }
 
 run_action() {
-    make "${@}" -f /usr/local/bin/actions.mk
+  make "${@}" -f /usr/local/bin/actions.mk
 }
 
 echo -n "Checking Drupal Console... "
@@ -39,18 +39,23 @@ env | grep -q ^DRUPAL_SITE=
 echo "OK"
 
 if [[ -n "${DOCROOT_SUBDIR}" ]]; then
-	DRUPAL_ROOT="${APP_ROOT}/${DOCROOT_SUBDIR}"
+  DRUPAL_ROOT="${APP_ROOT}/${DOCROOT_SUBDIR}"
 else
-	DRUPAL_ROOT="${APP_ROOT}"
+  DRUPAL_ROOT="${APP_ROOT}"
 fi
 
 FILES_ARCHIVE_URL="https://s3.amazonaws.com/wodby-sample-files/drupal-php-import-test/files.tar.gz"
-GIT_URL="https://github.com/drupal-composer/drupal-project.git"
+GIT_URL="https://github.com/drupal/recommended-project"
 
 make git-clone url="${GIT_URL}" -f /usr/local/bin/actions.mk
-make git-checkout target=8.x -f /usr/local/bin/actions.mk
+# Get latest stable drupal 9 tag.
+latest_ver=$(git show-ref --tags | grep -P -o '(?<=refs/tags/)9\.[0-9]+\.[0-9]+$' | sort -rV | head -n1)
+make git-checkout target="${latest_ver}" -f /usr/local/bin/actions.mk
 
 composer install -n
+# currently in conflict with D9 https://github.com/hechoendrupal/drupal-console/issues/4220
+#composer require --dev drupal/console:@stable
+composer require drush/drush
 composer require drupal/redis
 
 cd "${DRUPAL_ROOT}"

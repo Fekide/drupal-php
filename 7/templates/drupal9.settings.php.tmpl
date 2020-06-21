@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Wodby environment configuration for Drupal 8.
+ * Wodby environment configuration for Drupal 9.
  */
 
 {{ if getenv "WODBY_HOSTS" }}{{ range jsonArray (getenv "WODBY_HOSTS") }}
@@ -107,9 +107,6 @@ $settings['file_public_path'] = "sites/{$wodby['site']}/files";
 $settings['file_private_path'] = $wodby['files_dir'] . '/private';
 $settings['file_temporary_path'] = '/tmp';
 
-$config_directories['sync'] = $wodby['files_dir'] . '/config/sync_' . $wodby['sync_salt'];
-// For Drupal 8.8.0+
-// @see https://www.drupal.org/docs/8/configuration-management/changing-the-storage-location-of-the-sync-directory
 $settings['config_sync_directory'] = $wodby['files_dir'] . '/config/sync_' . $wodby['sync_salt'];
 
 if (!empty($wodby['hosts'])) {
