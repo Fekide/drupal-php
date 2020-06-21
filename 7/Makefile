@@ -3,7 +3,7 @@
 PHP_VER ?= 7.4
 
 BASE_IMAGE_TAG = $(PHP_VER)
-REPO = fekide/drupal-php
+REPO = $(IMAGE_HOME)/drupal-php
 NAME = drupal-php-$(PHP_VER)
 
 ifeq ($(TAG),)

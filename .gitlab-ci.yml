@@ -1,0 +1,58 @@
+image: 
+  name: docker
+  entrypoint: ["/bin/sh", "-c"]
+
+stages:
+  - build
+
+.build-template:
+  tags:
+    - docker
+    - build
+  services:
+    - docker:18.09-dind
+  variables:
+    IMAGE_HOME: $CI_REGISTRY_IMAGE
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay
+    PHP_VER: '7.4'
+  before_script:
+    - docker -l debug version
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - apk add make bash docker-compose
+  script:
+    - cd "${PHP_VER}" || cd "${PHP_VER:0:1}"
+    - make
+    - make test
+    - make release
+
+build dev:
+  stage: build
+  extends: .build-template
+  variables:
+    IMAGE_HOME: $CI_REGISTRY_IMAGE
+    PHP_DEV: '1'
+  except:
+    - master
+    - tags
+
+build master:
+  stage: build
+  extends: .build-template
+  variables:
+    IMAGE_HOME: $CI_REGISTRY_IMAGE
+    TAG: latest
+  only:
+    - master
+
+build tags:
+  stage: build
+  extends: .build-template
+  variables:
+    IMAGE_HOME: $CI_REGISTRY_IMAGE
+    STABILITY_TAG: ${CI_COMMIT_REF_NAME}
+  only:
+    - tags
+
+
+
